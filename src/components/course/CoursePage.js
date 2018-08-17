@@ -1,5 +1,6 @@
 import React, {ProtoTypes} from 'react';
-
+import {connect} from 'react-redux';
+import * as courseActions from '../../actions/courseActions';
 
 class CoursePage extends React.Component {
   constructor(props, context) {
@@ -18,7 +19,7 @@ class CoursePage extends React.Component {
   }
 
   onClickSave(event) {
-    alert(`Saving ${this.state.course.title}`);
+    this.props.dispatch(courseActions.createCourse(this.state.course));
   }
 
   render() {
@@ -37,4 +38,15 @@ class CoursePage extends React.Component {
   }
 }
 
-export default CoursePage;
+
+function mapStateToProps(state, ownProps) {
+  return {
+    // state.courses based on the choice we made in rootReducer
+    // if we would have called courses something else like
+    // courseReducer then we would access state through, state.courseReducer instead
+    courses: state.courses
+  };
+}
+
+
+retexport default connect(mapStateToProps)(CoursePage);
