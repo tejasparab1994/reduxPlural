@@ -1,15 +1,14 @@
 import * as types from './actionTypes';
 import courseApi from '../api/mockCourseApi';
 
-export function loadCoursesSuccess(course) {
-  return { type: types.LOAD_COURSE_SUCCESS, course };
+export function loadCoursesSuccess(courses) {
+  return { type: types.LOAD_COURSES_SUCCESS, courses };
 }
 
-// a thunk always returns a function that excepts a dispatch
+// a thunk always returns a function that ACCEPTS a dispatch as its parameter
 export function loadCourses() {
-  return function dispatch() {
-    return courseApi.getAllCourses()
-    .then(courses => {
+  return function(dispatch) {
+    return courseApi.getAllCourses().then(courses => {
       dispatch(loadCoursesSuccess(courses));
     })
     .catch(error => {
