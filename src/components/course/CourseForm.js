@@ -41,14 +41,12 @@ const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors}) => 
       <input type = "submit" disabled={loading} value={loading? 'Saving...' : 'Save'}
       className = "btn btn-primary"
       onClick = {onSave} />
-
-
     </form>
     );
   };
 
 
-CourseForm.proptypes = {
+CourseForm.propTypes = {
   course: React.PropTypes.object.isRequired,
   allAuthors: React.PropTypes.array,
   onSave: React.PropTypes.func.isRequired,
