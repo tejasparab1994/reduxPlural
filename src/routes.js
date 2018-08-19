@@ -10,9 +10,10 @@ import ManageCoursePage from './components/course/ManageCoursePage';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={HomePage}/>
-    <Route path="about" component={AboutPage} />
-    <Route path="courses" component={CoursePage} />
-    <Route path="course/:id" component={ManageCoursePage} />
-  </Route>
+  <IndexRoute component={HomePage}/>
+  <Route path="about" component={AboutPage} />
+  <Route path="courses" component={CoursePage} />
+  <Route path = "course" component={ManageCoursePage} />
+  <Route path="course/:id" component={ManageCoursePage} />
+</Route>
 );
