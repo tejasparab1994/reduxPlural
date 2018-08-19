@@ -54,9 +54,22 @@ ManageCoursePage.contextTypes = {
   router: PropTypes.object
 };
 
+function getCourseById(courses, id){
+
+  const course = courses.filter(course => course.id == id);
+  if(course.length) return course[0]; // since filter returns an array and have to grab the first element
+  return null;
+}
+
 
 function mapStateToProps(state, ownProps) {
+  const courseId = ownProps.params.id; // from the path /course/:id
+
   let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
+
+  if (courseId && state.courses.length > 0) {
+    course  = getCourseById(state.courses, courseId);
+  }
   // since in our select input function we are looking for value and text, i.e. just
   // a key-value pair but the authors prop we have fetched from api will have 3 fields
   // id, firstname, lastname. Hence we need to modify the format using the below funct
